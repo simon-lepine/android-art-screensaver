@@ -4,11 +4,6 @@ const keepAwake = async () => {
 	await KeepAwake.keepAwake();
 };
 
-//source: https://capacitor-tutorial.com/plugins/capacitory-toggle-fullscreen/
-import { Plugins } from '@capacitor/core';
-const { ToggleFullScreen } = Plugins;
-ToggleFullScreen.toggle();
-
 
 const screen_height = screen.height;
 const screen_width = screen.width;
