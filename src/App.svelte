@@ -27,13 +27,13 @@ const button_on_click = () => {
 
 	let date_object = new Date();
 	
-	let red = (255 / 3) / 24;
+	let red = (255 / 2) / 24;
 	red = Math.floor(red * date_object.getHours());
 
 	let green = 255/86400;
 	green = Math.floor(green * (date_object.getHours() * date_object.getMinutes() * date_object.getSeconds()));
 
-	let blue = 255 / 3600;
+	let blue = (255 / 3600) + 127.5;
 	blue = Math.floor(blue * (date_object.getMinutes() * date_object.getMinutes()));
 
 	canvas_context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
