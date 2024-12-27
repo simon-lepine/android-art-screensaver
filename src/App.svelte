@@ -1,16 +1,21 @@
 <script>
 
+const document_pointer = document.documentElement;
 const screen_height = screen.height;
 const screen_width = screen.width;
 let max_length = screen_height;
 if (max_length > screen_width){
 	max_length = screen_width;
 }
-max_length = max_length * 2;
+max_length = max_length * 3;
 let current_length = 0;
 
 const button_on_click = () => {
-
+	if (typeof document_pointer.requestFullscreen == 'function') {
+		document_pointer.requestFullscreen();
+	} else if (document_pointer.webkitRequestFullscreen == 'function') { /* Safari */
+		document_pointer.webkitRequestFullscreen();
+	}
 	let canvas_context = canvas_pointer.getContext('2d');
 
 	let size = Math.floor(Math.random() * 6) + 4;
@@ -39,7 +44,7 @@ const button_on_click = () => {
 	canvas_context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
 	canvas_context.fillRect(x, y, size, size);
 }
-setInterval(button_on_click, 500);
+setInterval(button_on_click, 333);
 let canvas_pointer;
 </script>
 
