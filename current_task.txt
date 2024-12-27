@@ -1,0 +1,6 @@
+write /report/read_status.js to display "this report has not be submitted yet"
+Change width of missing person URL to prevent overflow on Chrome
+Add first profile image to first page of print
+Remove menu from print
+Ability to upload existing Herbert prot PDF
+Add donate now to website
