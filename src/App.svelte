@@ -7,13 +7,21 @@ import { derived, writable } from 'svelte/store';
  * and store element pointer
  */
 let store=writable({});
-console.log($store);
-
 
 const screen_height = Math.floor(screen.height / 3);
 const screen_width = Math.floor(screen.width / 3);
+const max_length = Math.floor((screen_width + screen_height) / .375);
 
 const button_on_click = () => {
+	if (
+		(typeof $store == 'object')
+		&&
+		(Object.keys($store).length > max_length)
+	){
+		store.update((n) => {
+			return {};
+		});
+	}
 
 	let x = Math.floor(Math.random() * screen_height);
 	let y = Math.floor(Math.random() * screen_width);
@@ -31,7 +39,7 @@ const button_on_click = () => {
 
 	$store[ x + '-' + y] = `rgb(${red}, ${green}, ${blue});`;
 }
-setInterval(button_on_click, 1000);
+setInterval(button_on_click, 250);
 </script>
 
 <div id='canvas'>
@@ -51,7 +59,7 @@ setInterval(button_on_click, 1000);
 <style>
 #canvas {
 	overflow:hidden;
-	background-color:   #17202a;
+	background-color:#000;
 }
 .pixel {
   display: table-cell;
