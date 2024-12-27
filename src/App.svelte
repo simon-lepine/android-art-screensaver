@@ -7,7 +7,11 @@ const keepAwake = async () => {
 
 const screen_height = screen.height;
 const screen_width = screen.width;
-let max_length = (screen_height + screen_width) / 2;
+let max_length = screen_height;
+if (max_length > screen_width){
+	max_length = screen_width;
+}
+max_length = max_length * 2;
 let current_length = 0;
 
 const button_on_click = () => {
