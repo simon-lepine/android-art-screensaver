@@ -1,13 +1,5 @@
 <script>
 import { KeepAwake } from '@capacitor-community/keep-awake';
-import { derived, writable } from 'svelte/store';
-
-
-/**
- * init store so we can loop through it
- * and store element pointer
- */
-let store=writable({});
 
 const screen_height = screen.height;
 const screen_width = screen.width;
@@ -46,20 +38,6 @@ const button_on_click = () => {
 
 	canvas_context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
 	canvas_context.fillRect(x, y, size, size);
-
-	return false;
-	if (
-		(typeof $store == 'object')
-		&&
-		(Object.keys($store).length > max_length)
-	){
-		store.update((n) => {
-			return {};
-		});
-	}
-
-
-	$store[ x + '-' + y] = `rgb(${red}, ${green}, ${blue});`;
 }
 setInterval(button_on_click, 500);
 let canvas_pointer;
@@ -67,15 +45,9 @@ let canvas_pointer;
 
 <canvas id="canvas" width={screen_width} height={screen_height} bind:this={canvas_pointer}></canvas>
 
-
 <style>
 #canvas {
 	overflow:hidden;
 	background-color:#000;
-}
-.pixel {
-  display: table-cell;
-  width: 3px;
-  height: 3px;
 }
 </style>
