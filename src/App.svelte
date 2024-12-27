@@ -1,5 +1,8 @@
 <script>
 import { KeepAwake } from '@capacitor-community/keep-awake';
+const keepAwake = async () => {
+	await KeepAwake.keepAwake();
+};
 
 const screen_height = screen.height;
 const screen_width = screen.width;
