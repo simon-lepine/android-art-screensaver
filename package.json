@@ -18,6 +18,7 @@
     "@capacitor/cli": "^6.2.0",
     "@capacitor/core": "^6.2.0",
     "@capacitor/device": "^6.0.2",
+    "capacitor-plugin-toggle-fullscreen": "^0.0.7",
     "module-alias": "*"
   },
   "devDependencies": {

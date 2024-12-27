@@ -4,19 +4,22 @@ const keepAwake = async () => {
 	await KeepAwake.keepAwake();
 };
 
+//source: https://capacitor-tutorial.com/plugins/capacitory-toggle-fullscreen/
+import { Plugins } from '@capacitor/core';
+const { ToggleFullScreen } = Plugins;
+ToggleFullScreen.toggle();
+
+
 const screen_height = screen.height;
 const screen_width = screen.width;
-let max_length = screen.height;
-if (max_length > screen_width){
-	max_length = screen_width;
-}
+let max_length = (screen_height + screen_width) / 2;
 let current_length = 0;
 
 const button_on_click = () => {
 
 	let canvas_context = canvas_pointer.getContext('2d');
 
-	let size = Math.floor(Math.random() * 6) + 2;
+	let size = Math.floor(Math.random() * 6) + 4;
 
 	current_length = current_length + size;
 	if (current_length > max_length){
@@ -30,7 +33,7 @@ const button_on_click = () => {
 
 	let date_object = new Date();
 	
-	let red = (255 / 2) / 31;
+	let red = (255 / 3) / 24;
 	red = Math.floor(red * date_object.getHours());
 
 	let green = 255/86400;
@@ -51,6 +54,6 @@ let canvas_pointer;
 <style>
 #canvas {
 	overflow:hidden;
-	background-color:#000;
+	background-color: rgba(0, 0, 0, .85);
 }
 </style>
