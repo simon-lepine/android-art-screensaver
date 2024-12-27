@@ -16,7 +16,7 @@
 			"enabled": true
 		},
 		"BackgroundRunner": {
-			"label": "com.ghResponse.PlanAhead.check",
+			"label": "com.ghResponse.screensaver.check",
 			"src": "background-task.js",
 			"event": "testEventListen",
 			"repeat": true,
