@@ -51,7 +51,7 @@ setInterval(button_on_click, 1000);
 <style>
 #canvas {
 	overflow:hidden;
-	background-color:  #1b2631;
+	background-color:   #17202a;
 }
 .pixel {
   display: table-cell;
