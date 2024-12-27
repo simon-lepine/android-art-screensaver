@@ -1,4 +1,5 @@
 <script>
+import { KeepAwake } from '@capacitor-community/keep-awake';
 import { derived, writable } from 'svelte/store';
 
 
@@ -8,23 +9,29 @@ import { derived, writable } from 'svelte/store';
  */
 let store=writable({});
 
-const screen_height = Math.floor(screen.height / 3);
-const screen_width = Math.floor(screen.width / 3);
-const max_length = Math.floor((screen_width + screen_height) / .375);
+const screen_height = screen.height;
+const screen_width = screen.width;
+let max_length = screen.height;
+if (max_length > screen_width){
+	max_length = screen_width;
+}
+let current_length = 0;
 
 const button_on_click = () => {
-	if (
-		(typeof $store == 'object')
-		&&
-		(Object.keys($store).length > max_length)
-	){
-		store.update((n) => {
-			return {};
-		});
+
+	let canvas_context = canvas_pointer.getContext('2d');
+
+	let size = Math.floor(Math.random() * 6) + 2;
+
+	current_length = current_length + size;
+	if (current_length > max_length){
+		current_length = 0;
+		canvas_context.clearRect(0, 0, screen_width, screen_height);
 	}
 
-	let x = Math.floor(Math.random() * screen_height);
-	let y = Math.floor(Math.random() * screen_width);
+	let x = Math.floor(Math.random() * screen_width) - size - 2;
+	let y = Math.floor(Math.random() * screen_height) - size - 2;
+
 
 	let date_object = new Date();
 	
@@ -35,26 +42,31 @@ const button_on_click = () => {
 	green = Math.floor(green * (date_object.getHours() * date_object.getMinutes() * date_object.getSeconds()));
 
 	let blue = 255 / 3600;
-	blue = Math.floor(blue * (date_object.getSeconds() * date_object.getMinutes()));
+	blue = Math.floor(blue * (date_object.getMinutes() * date_object.getMinutes()));
+
+	canvas_context.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+	canvas_context.fillRect(x, y, size, size);
+
+	return false;
+	if (
+		(typeof $store == 'object')
+		&&
+		(Object.keys($store).length > max_length)
+	){
+		store.update((n) => {
+			return {};
+		});
+	}
+
 
 	$store[ x + '-' + y] = `rgb(${red}, ${green}, ${blue});`;
 }
 setInterval(button_on_click, 500);
+let canvas_pointer;
 </script>
 
-<div id='canvas'>
-{#each {length: (screen_height)} as _, row}
-	<div>
-	{#each {length: (screen_width)} as _, col}
-		{#if $store[ row + '-' + col ] || ''}
-			<span class='pixel' style={'background-color: ' + $store[ row + '-' + col ]}></span>
-		{:else}
-			<span class='pixel'></span>
-		{/if}
-	{/each}
-	</div>
-{/each}
-</div>
+<canvas id="canvas" width={screen_width} height={screen_height} bind:this={canvas_pointer}></canvas>
+
 
 <style>
 #canvas {
