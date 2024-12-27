@@ -1,6 +1,6 @@
 {
-	"appId": "com.ghResponse.PlanAhead",
-	"appName": "Plan Ahead by MissingPerson.app",
+	"appId": "com.ghResponse.screensaver",
+	"appName": "Screensaver by Me",
 	"webDir": "dist",
 	"server": {
 		"androidScheme": "https"
