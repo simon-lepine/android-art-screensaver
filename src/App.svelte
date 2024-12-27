@@ -39,7 +39,7 @@ const button_on_click = () => {
 
 	$store[ x + '-' + y] = `rgb(${red}, ${green}, ${blue});`;
 }
-setInterval(button_on_click, 250);
+setInterval(button_on_click, 500);
 </script>
 
 <div id='canvas'>
