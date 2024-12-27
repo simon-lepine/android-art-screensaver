@@ -12,13 +12,11 @@
     "build-app": "npm run build; npx capacitor-assets generate; npx cap sync; chmod . 0777 -R;"
   },
   "dependencies": {
-    "@capacitor-community/keep-awake": "^5.0.1",
     "@capacitor/android": "^6.2.0",
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^6.2.0",
     "@capacitor/core": "^6.2.0",
     "@capacitor/device": "^6.0.2",
-    "capacitor-plugin-toggle-fullscreen": "^0.0.7",
     "module-alias": "*"
   },
   "devDependencies": {
